@@ -1,0 +1,15 @@
+{
+  "name": "resellerinterface/plesk-dns-script",
+  "description": "ResellerInterface DNS Integration Script",
+  "version": "1.0.0",
+  "license": "MIT",
+  "config": {
+    "vendor-dir": "plib/vendor"
+  },
+  "require": {
+    "resellerinterface/api-client-php": "1.0.*"
+  },
+  "require-dev": {
+    "plesk/pm-api-stubs": "^18.0"
+  }
+}

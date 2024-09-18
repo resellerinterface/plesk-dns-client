@@ -1,0 +1,14 @@
+<?php if($this->tabs) echo $this->renderTabs($this->tabs) ?>
+
+<legend><?php echo pm_Locale::lmsg('titleApiCredentials'); ?></legend>
+
+<div><?php echo pm_Locale::lmsg('descApiCredentials'); ?></div>
+<br>
+<div><?php echo pm_Locale::lmsg('descApiModules'); ?></div>
+<div class="pul-hint"><?php echo pm_Locale::lmsg('descApiModulesHint'); ?></div>
+<br>
+<div><?php echo pm_Locale::lmsg('descApiRights'); ?></div>
+<div class="pul-hint"><?php echo pm_Locale::lmsg('descApiRightsHint'); ?></div>
+<br>
+
+<?php echo $this->form; ?>

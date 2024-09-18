@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <id>resellerinterface-dns</id>
+    <name>ResellerInterface - DNS</name>
+    <description>This extension provides the functionality needed for integration with ResellerInterface DNS API.</description>
+    <description xml:lang="de-DE">Diese Erweiterung bietet die für die Integration mit der ResellerInterface DNS API benötigte Funktionalität.</description>
+    <vendor>ResellerInterface</vendor>
+    <url>https://github.com/resellerinterface/plesk-dns-client</url>
+    <category>dns</category>
+    <version>1.0.0</version>
+    <plesk_min_version>18.0.0</plesk_min_version>
+</module>
