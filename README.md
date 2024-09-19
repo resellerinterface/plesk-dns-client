@@ -6,7 +6,7 @@
 - ResellerInterface API-Module
 - ResellerInterface API-User
 
-## Installation (2 methodes)
+## Installation (2 methods)
 
 ### Method #1 - CLI
 - download the extensions zip file
