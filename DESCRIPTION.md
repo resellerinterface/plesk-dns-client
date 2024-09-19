@@ -1,6 +1,6 @@
 This extension provides the functionality needed for integration with ResellerInterface DNS API.
 
-### supported record types
+### Supported record types
 - A
 - AAAA
 - CAA
@@ -12,4 +12,6 @@ This extension provides the functionality needed for integration with ResellerIn
 - TLSA
 - TXT
 
-### separate zones for subdomains are not supported
+### Hints 
+- invalid ttls are set to default values
+- separate zones for subdomains are not supported
