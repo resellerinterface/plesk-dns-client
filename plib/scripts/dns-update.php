@@ -39,11 +39,11 @@ try {
 			$data['zone']['name'] = preg_replace( "/\.$/", "", $data['zone']['name']); // remove trailing dot
 			$response = $client->sessionRequest($loginParams, "dns/updateZone", [
 				'domain' => $data['zone']['name'],
-				'refresh' => $data['zone']['soa']['refresh'],
-				'retry' => $data['zone']['soa']['retry'],
-				'expire' => $data['zone']['soa']['expire'],
-				'minimum' => $data['zone']['soa']['minimum'],
-				'ttl' => $data['zone']['soa']['ttl'],
+				'refresh' => max($data['zone']['soa']['refresh'], 3600),
+				'retry' => max($data['zone']['soa']['retry'], 3600),
+				'expire' => max($data['zone']['soa']['expire'], 604800),
+				'minimum' => max($data['zone']['soa']['minimum'], 60),
+				'ttl' => max($data['zone']['soa']['ttl'], 60),
 			]);
 			if($response->isError()) {
 				throw new Exception($data['zone']['name'] . " dns/updateZone " . pm_Locale::lmsg('apiResponse') . ": " . $response->getState() . " " . $response->getStateName() . ": " .$response->getStateParam());
@@ -80,7 +80,7 @@ try {
 				$records[] = [
 					'name' => $rr['host'],
 					'type' => $rr['type'],
-					'ttl' => $rr['ttl'],
+					'ttl' => max($rr['ttl'] ?? 86400, 60),
 					'priority' => $rr['opt'],
 					'content' => $rr['value'],
 				];
