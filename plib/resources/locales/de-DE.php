@@ -18,7 +18,7 @@ $messages = [
 	'formLabelApiSubmit'      => "Prüfen & speichern",
 
 	'formDescApiResellerID'  => "K12345",
-	'formDescApiBackupZone'  => "Vor der Synchroniesierung ein Backup der DNS erstellen",
+	'formDescApiBackupZone'  => "Vor der Synchronisierung ein Backup der DNS erstellen",
 	'formDescApiStagingMode' => "API-Aufrufe an das Staging-System senden",
 
 	'apiResponse' => "API-Antwort",
