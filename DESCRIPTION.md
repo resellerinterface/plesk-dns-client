@@ -13,5 +13,5 @@ This extension provides the functionality needed for integration with ResellerIn
 - TXT
 
 ### Hints 
-- invalid ttls are set to default values
-- separate zones for subdomains are not supported
+- Invalid ttls are set to default values
+- Separate zones for subdomains are not supported

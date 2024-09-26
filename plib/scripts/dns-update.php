@@ -25,7 +25,7 @@ try {
 	foreach($datas as $data) {
 		// create a zone
 		if($data['command'] === "create") {
-			$data['zone']['name'] = preg_replace( "/\.$/", "", $data['zone']['name']);
+			$data['zone']['name'] = preg_replace( "/\.$/", "", $data['zone']['name']); // remove trailing dot
 			$response = $client->sessionRequest($loginParams, "dns/createZoneDefault", [
 				'domain' => $data['zone']['name'],
 			]);
@@ -98,7 +98,7 @@ try {
 
 		// delete a zone
 		if($data['command'] === "delete") {
-			$data['zone']['name'] = preg_replace( "/\.$/", "", $data['zone']['name']);
+			$data['zone']['name'] = preg_replace( "/\.$/", "", $data['zone']['name']); // remove trailing dot
 			$response = $client->sessionRequest($loginParams, "dns/deleteZone", [
 				'domain' => $data['zone']['name'],
 			]);

@@ -21,7 +21,7 @@
 - upload the extension zip file
 - configure the extension
 
-you see no upload button? then add the folling code to your panel.ini
+You see no upload button? Then add the following code to your `panel.ini`
 ```
 [ext-catalog]
 extensionUpload = true
