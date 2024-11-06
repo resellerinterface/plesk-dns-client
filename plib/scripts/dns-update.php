@@ -54,36 +54,40 @@ try {
 				$rr['host'] = preg_replace( "/\.$/", "", $rr['host']); // remove trailing dot
 
 				// skip NS records for the zone
-				if($rr['type'] === "NS" && $rr['host'] === $data['zone']['name']) {
-					continue;
-				}
-				// skip not supported records
-				if(in_array($rr['type'], ['DS', 'PTR'])) {
+				if($rr['type'] === pm_Dns_Record::TYPE_NS && $rr['host'] === $data['zone']['name']) {
 					continue;
 				}
 
-				// merge SRV/TLSA priority and content
-				if($rr['type'] === "SRV" || $rr['type'] === "TLSA") {
-					$rr['value'] = $rr['opt'] . " " . $rr['value'];
-					$rr['opt'] = null;
-				}
-				// merge CAA priority and content
-				if($rr['type'] === "CAA") {
-					$rr['value'] = $rr['opt'] . " \"" . $rr['value'] . "\"";
-					$rr['opt'] = null;
-				}
+				// supported record types
+				if(in_array($rr['type'], [
+					pm_Dns_Record::TYPE_A, pm_Dns_Record::TYPE_AAAA,
+					pm_Dns_Record::TYPE_CNAME, pm_Dns_Record::TYPE_MX, pm_Dns_Record::TYPE_NS,
+					'HTTPS', pm_Dns_Record::TYPE_CAA, pm_Dns_Record::TYPE_SRV,
+					pm_Dns_Record::TYPE_SRV, pm_Dns_Record::TYPE_TXT
+				])) {
+					// merge SRV/TLSA priority and content
+					if(in_array($rr['type'], [pm_Dns_Record::TYPE_SRV, pm_Dns_Record::TYPE_SRV])) {
+						$rr['value'] = $rr['opt'] . " " . $rr['value'];
+						$rr['opt'] = null;
+					}
+					// merge CAA priority and content
+					if(in_array($rr['type'], [pm_Dns_Record::TYPE_CAA])) {
+						$rr['value'] = $rr['opt'] . " \"" . $rr['value'] . "\"";
+						$rr['opt'] = null;
+					}
+					// remove trailing dot from hostname
+					if(in_array($rr['type'], [pm_Dns_Record::TYPE_CNAME, pm_Dns_Record::TYPE_MX, pm_Dns_Record::TYPE_SRV, pm_Dns_Record::TYPE_NS])){
+						$rr['value'] = preg_replace( "/\.$/", "", $rr['value']); // remove trailing dot
+					}
 
-				if(in_array($rr['type'], ['CNAME', 'MX', 'SRV', 'NS'])){
-					$rr['value'] = preg_replace( "/\.$/", "", $rr['value']); // remove trailing dot
+					$records[] = [
+						'name' => $rr['host'],
+						'type' => $rr['type'],
+						'ttl' => max($rr['ttl'] ?? 86400, 60),
+						'priority' => $rr['opt'],
+						'content' => $rr['value'],
+					];
 				}
-
-				$records[] = [
-					'name' => $rr['host'],
-					'type' => $rr['type'],
-					'ttl' => max($rr['ttl'] ?? 86400, 60),
-					'priority' => $rr['opt'],
-					'content' => $rr['value'],
-				];
 			}
 			$response = $client->sessionRequest($loginParams, "dns/setRecords", [
 				'domain' => $data['zone']['name'],

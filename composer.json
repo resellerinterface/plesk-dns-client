@@ -1,7 +1,7 @@
 {
   "name": "resellerinterface/plesk-dns-script",
   "description": "ResellerInterface DNS Integration Script",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "config": {
     "vendor-dir": "plib/vendor"

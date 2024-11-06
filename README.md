@@ -1,8 +1,10 @@
 # plesk-dns-client
+The extension allows you to manage the DNS records of your domains in Plesk.
+[further description](DESCRIPTION.md)
 
 ## Requirements
-- Plesk Interface Version 18 or greater
-- PHP 8.2
+- Plesk Interface Version 18.0.48 or greater
+- PHP 8.2 or greater
 - ResellerInterface API-Module
 - ResellerInterface API-User
 
@@ -26,3 +28,6 @@ You see no upload button? Then add the following code to your `panel.ini`
 [ext-catalog]
 extensionUpload = true
 ```
+
+## Changelog
+[see CHANGES.md](CHANGES.md)
