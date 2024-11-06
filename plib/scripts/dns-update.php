@@ -62,11 +62,11 @@ try {
 				if(in_array($rr['type'], [
 					pm_Dns_Record::TYPE_A, pm_Dns_Record::TYPE_AAAA,
 					pm_Dns_Record::TYPE_CNAME, pm_Dns_Record::TYPE_MX, pm_Dns_Record::TYPE_NS,
-					'HTTPS', pm_Dns_Record::TYPE_CAA, pm_Dns_Record::TYPE_SRV,
-					pm_Dns_Record::TYPE_SRV, pm_Dns_Record::TYPE_TXT
+					'HTTPS', pm_Dns_Record::TYPE_CAA, pm_Dns_Record::TYPE_TLSA,
+					pm_Dns_Record::TYPE_SRV, pm_Dns_Record::TYPE_TXT,
 				])) {
 					// merge SRV/TLSA priority and content
-					if(in_array($rr['type'], [pm_Dns_Record::TYPE_SRV, pm_Dns_Record::TYPE_SRV])) {
+					if(in_array($rr['type'], [pm_Dns_Record::TYPE_SRV, pm_Dns_Record::TYPE_TLSA])) {
 						$rr['value'] = $rr['opt'] . " " . $rr['value'];
 						$rr['opt'] = null;
 					}
