@@ -11,13 +11,13 @@ The extension allows you to manage the DNS records of your domains in Plesk.
 ## Installation (2 methods)
 
 ### Method #1 - CLI
-- download the extensions zip file
+- download the [extensions zip](https://github.com/resellerinterface/plesk-dns-client/releases/latest) file
 - upload the extensions zip file to your server
 - execute the following command `plesk bin extension -i <PATH-TO-UPLOADED-EXTENSION-ZIP>`
 - go to your plesk interface and configure the extension under "my extensions"
 
 ### Method #2 - Plesk Interface
-- download the extensions zip file
+- download the [extensions zip](https://github.com/resellerinterface/plesk-dns-client/releases/latest) file
 - go to your plesk interface and open the extensions page
 - on the "my extensions" tab click on the "extension upload" button
 - upload the extension zip file
