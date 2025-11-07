@@ -71,13 +71,13 @@ try {
 						$rr['opt'] = null;
 					}
 					// merge CAA priority and content
-					if(in_array($rr['type'], [pm_Dns_Record::TYPE_CAA])) {
+					if($rr['type'] === pm_Dns_Record::TYPE_CAA) {
 						$rr['value'] = $rr['opt'] . " \"" . $rr['value'] . "\"";
 						$rr['opt'] = null;
 					}
 					// remove trailing dot from hostname
 					if(in_array($rr['type'], [pm_Dns_Record::TYPE_CNAME, pm_Dns_Record::TYPE_MX, pm_Dns_Record::TYPE_SRV, pm_Dns_Record::TYPE_NS])){
-						$rr['value'] = preg_replace( "/\.$/", "", $rr['value']); // remove trailing dot
+						$rr['value'] = preg_replace( "/(?!^\.$)\.$/", "", $rr['value']); // remove trailing dot, but not single dot
 					}
 
 					$records[] = [
@@ -96,7 +96,11 @@ try {
 				'records' => $records,
 			]);
 			if($response->isError()) {
-				throw new Exception($data['zone']['name'] . " dns/updateZone " . pm_Locale::lmsg('apiResponse') . ": " . $response->getState() . " " . $response->getStateName() . ": " .$response->getStateParam());
+				$error = "";
+				if(preg_match("/records\[(\d+)]/", $response->getStateParam(), $matches) && isset($records[$matches[1]])) {
+					$error .= PHP_EOL . json_encode($records[$matches[1]], JSON_PRETTY_PRINT);
+				}
+				throw new Exception($data['zone']['name'] . " dns/updateZone " . pm_Locale::lmsg('apiResponse') . ": " . $response->getState() . " " . $response->getStateName() . ": " .$response->getStateParam() . $error);
 			}
 		}
 

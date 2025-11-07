@@ -83,7 +83,8 @@ class IndexController extends pm_Controller_Action {
 			$client = new Modules_ResellerinterfaceDns_Client($stagingMode ? Modules_ResellerinterfaceDns_Client::STAGING_URL : Modules_ResellerinterfaceDns_Client::LIVE_URL);
 
 			$resellerID = preg_replace("/^(KD-|KD|K)\s*(\d+)$/i", "$2", $data['apiResellerID']);
-			$response = $client->login($data['apiUsername'], ($data['apiPassword'] ?: pm_Settings::getDecrypted('apiPassword')), $resellerID);
+			$password = ($data['apiPassword'] ?: pm_Settings::getDecrypted('apiPassword'));
+			$response = $client->login($data['apiUsername'], $password, $resellerID);
 			if($response->isError()) {
 				$this->_status->addError( $this->lmsg('apiResponse') . ": " . $response->getState() . " " . $response->getStateName() . ": " .$response->getStateParam());
 				$this->_helper->json(['redirect' => pm_Context::getBaseUrl()]);
@@ -93,9 +94,7 @@ class IndexController extends pm_Controller_Action {
 			pm_Settings::clean();
 			pm_Settings::setEncrypted('apiResellerID', $resellerID);
 			pm_Settings::setEncrypted('apiUsername', $data['apiUsername']);
-			if(!empty($data['apiPassword'])) {
-				pm_Settings::setEncrypted('apiPassword', $data['apiPassword']);
-			}
+			pm_Settings::setEncrypted('apiPassword', $password);
 			pm_Settings::setEncrypted('apiBackupZone', !empty($data['apiBackupZone']));
 			pm_Settings::setEncrypted('apiStatingMode', $stagingMode);
 

@@ -23,7 +23,7 @@ The extension allows you to manage the DNS records of your domains in Plesk.
 - upload the extension zip file
 - configure the extension
 
-You see no upload button? Then add the following code to your `panel.ini`
+You see no upload button? Then add the following code to your [panel.ini](https://docs.plesk.com/en-US/obsidian/administrator-guide/plesk-administration/panelini-configuration-file.78509/)
 ```
 [ext-catalog]
 extensionUpload = true
