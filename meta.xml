@@ -7,6 +7,6 @@
     <vendor>ResellerInterface</vendor>
     <url>https://github.com/resellerinterface/plesk-dns-client</url>
     <category>dns</category>
-    <version>1.0.0</version>
-    <plesk_min_version>18.0.0</plesk_min_version>
+    <version>1.0.1</version>
+    <plesk_min_version>18.0.48</plesk_min_version>
 </module>

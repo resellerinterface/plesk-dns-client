@@ -6,9 +6,9 @@ $messages = [
 	'titleApiCredentials' => "API-Credentials",
 	'descApiCredentials'  => "To synchronize the DNS to the ResellerInterface-Nameservers, you need an API user with DNS rights.",
 	'descApiModules'      => "Required module: API, user roles incl. rights management (optional)",
-	'descApiModulesHint'  => "ResellerInterface » Verwaltung » Module",
+	'descApiModulesHint'  => "ResellerInterface » Management » Modules",
 	'descApiRights'       => "Required Rights: manage zone header (api.dns.manageSOA), manange zone records (api.dns.manageRecords)",
-	'descApiRightsHint'   => "ResellerInterface » Verwaltung » Rechte",
+	'descApiRightsHint'   => "ResellerInterface » Management » Rights",
 
 	'formLabelApiResellerID'  => "Customer number",
 	'formLabelApiUsername'    => "Username",
